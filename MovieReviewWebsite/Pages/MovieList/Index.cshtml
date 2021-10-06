@@ -1,7 +1,60 @@
 ﻿@page
 @model MovieReviewWebsite.Pages.MovieList.IndexModel
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
+
+<br />
+<div class="container row p-0 m-0">
+    <div class="col-9"> <!--position of the button and text-->
+        <h2 class="text-info">Movie List</h2>
+    </div>
+    <div class="col-3"> <!--Length of the button and text-->
+        <a asp-page="Create" class="btn btn-info form-control text-white">Create New Movie</a>
+    </div>
+
+    <div class="col-12 border p-3 mt-3">
+        <form method="post">
+            @if (Model.Movies.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            <label asp-for="Movies.FirstOrDefault().Name"></label>
+                        </th>
+                        <th>
+                            @*@Html.DisplayNameFor(m=>m.Movies.FirstOrDefault().Director)*@ <!--Custom tag helper -->
+                            <label asp-for="Movies.FirstOrDefault().Director"></label>
+                        </th>
+                        <th>
+                            <label asp-for="Movies.FirstOrDefault().Score"></label>
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    @foreach(var item in Model.Movies)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Director)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.Score)
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                    </td>
+                </tr>
+                }
+                </table>
+            }
+             else
+            {
+                <p>No movies available at the moment.</p>
+            }
+        </form>
+    </div>
+</div>

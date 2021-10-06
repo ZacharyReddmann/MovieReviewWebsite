@@ -13,6 +13,8 @@ namespace MovieReviewWebsite.Model
 
         [Required] //Display attribute requiring name to not be null
         public string Name { get; set; }
-        public string Author { get; set; }
+        public string Director { get; set; }
+
+        public string Score { get; set; }
     }
 }

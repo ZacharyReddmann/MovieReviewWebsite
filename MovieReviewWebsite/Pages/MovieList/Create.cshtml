@@ -1,0 +1,51 @@
+﻿@page
+@model MovieReviewWebsite.Pages.MovieList.CreateModel
+
+
+<br />
+<h2 class="text-info">Create New Review</h2>
+<br />
+
+<div class="border container" stle="padding:30px;">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Movie.Name"></label>   <!--Total should usually add up to 12?-->
+            </div>
+            <div class="col-8">
+                <input asp-for="Movie.Name" class="form-control" />
+            </div>
+        </div>
+        <span asp-validation-for="Movie.Name" class="text-danger"></span>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Movie.Director"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Movie.Director" class="form-control" />
+                <span asp-validation-for="Movie.Director" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Movie.Score"></label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Movie.Score" class="form-control" />
+                <span asp-validation-for="Movie.Score" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-4 offset-2">
+                <input type="submit" value="Publish" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-4">
+                <a asp-page="Index" class="btn btn-success form-control">Back to Review List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{ <partial name="_ValidationScriptsPartial" /> <!--client side validation-->
+}
