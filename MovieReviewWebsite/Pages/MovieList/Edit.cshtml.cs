@@ -25,5 +25,21 @@ namespace MovieReviewWebsite.Pages.MovieList
         {
             Movie = await _db.Movie.FindAsync(id);
         }
+
+        public async Task<IActionResult> OnPost() 
+        {
+            if (ModelState.IsValid) 
+            {
+                var MovieFromDb = await _db.Movie.FindAsync(Movie.Id);
+                MovieFromDb.Name = Movie.Name;
+                MovieFromDb.Score = Movie.Score;
+                MovieFromDb.Director = Movie.Director;
+
+                await _db.SaveChangesAsync();
+
+                return RedirectToPage("Index");
+            }
+            return RedirectToPage();
+        }
     }
 }

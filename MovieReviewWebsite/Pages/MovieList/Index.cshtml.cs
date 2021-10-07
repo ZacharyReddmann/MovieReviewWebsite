@@ -24,5 +24,18 @@ namespace MovieReviewWebsite.Pages.MovieList
         {
             Movies = await _db.Movie.ToListAsync(); //Going to DB and getting all the movies and storing that in the Ienumerable Movies in the get handler
         }
+
+        public async Task<IActionResult> OnPostDelete(int id) 
+        {
+            var movie = await _db.Movie.FindAsync(id);
+            if (movie == null) 
+            {
+                return NotFound();
+            }
+            _db.Movie.Remove(movie);
+            await _db.SaveChangesAsync();
+
+            return RedirectToPage("Index");
+        }
     }
 }
